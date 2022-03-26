@@ -18,7 +18,7 @@ class Blockchain:
     def print_blocks(self):
         for i in range(len(self.chain)):
             current_block = self.chain[i]
-            print("Block {} {}".format(i, current_block))
+            print("\nBlock {} {}".format(i, current_block))
             current_block.print_contents()
 
     def add_block(self, transactions):
@@ -35,12 +35,14 @@ class Blockchain:
             previous = self.chain[i-1]
             if(current.hash != current.generate_hash()):
                 print(
-                    "The current hash of the block does not equal the generated hash of the block.")
+                    "\nINVALID: The current hash of the block does not equal the generated hash of the block.")
                 return False
             if(current.previous_hash != previous.generate_hash()):
                 print(
-                    "The previous block's hash does not equal the previous hash value stored in the current block.")
+                    "\nINVALID: The previous block's hash does not equal the previous hash value stored in the current block.")
                 return False
+
+        print("\nThe blockchain is valid.")
         return True
 
     def proof_of_work(self, block, difficulty=2):
