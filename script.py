@@ -22,3 +22,14 @@ local_blockchain.chain[2].transactions = fake_transactions
 
 print("After adding fraudulent transactions, validating the blockchain")
 local_blockchain.validate_chain()
+
+# TODO: Remove example above and define the User Interface below that allows user to interact with blockchain and print out the results
+ready = True
+
+while ready:
+
+    message = input(
+        """Enter message to send (enter q to quit): \n""")
+
+    if message == 'q':  # Quit
+        ready = False
