@@ -22,6 +22,8 @@ class Blockchain:
             current_block.print_contents()
 
     def add_block(self, transactions):
+        #TODO: print this process flow
+
         previous_hash = (self.chain[len(self.chain)-1]).hash
         new_block = Block(transactions, previous_hash)
         new_block.generate_hash()
@@ -30,6 +32,8 @@ class Blockchain:
         return proof, new_block
 
     def validate_chain(self):
+         #TODO: print this process flow for each comparison
+
         for i in range(1, len(self.chain)):
             current = self.chain[i]
             previous = self.chain[i-1]
@@ -46,6 +50,8 @@ class Blockchain:
         return True
 
     def proof_of_work(self, block, difficulty=2):
+        #TODO: print this process flow add some explanation
+
         proof = block.generate_hash()
         while proof[:difficulty] != '0'*difficulty:
             block.nonce += 1  # increment nonce until hash with difficulty is found

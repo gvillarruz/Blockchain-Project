@@ -11,13 +11,15 @@ class Block:
         self.hash = self.generate_hash()
 
     def generate_hash(self):
+        # TODO: print this process flow
+        
         block_header = str(self.time_stamp) + str(self.transactions) + \
             str(self.previous_hash) + str(self.nonce)
         block_hash = sha256(block_header.encode())
         return block_hash.hexdigest()
 
     def print_contents(self):
-        print("timestamp:", self.time_stamp)
-        print("transactions:", self.transactions)
-        print("current hash:", self.generate_hash())
-        print("previous hash:", self.previous_hash)
+        print("Timestamp:", self.time_stamp)
+        print("Transactions:", self.transactions)
+        print("Current Hash:", self.generate_hash())
+        print("Previous Hash:", self.previous_hash)
