@@ -28,10 +28,14 @@ while ready:
         """\nEnter Option: """)
 
     if message == "1":
+        print("The process for adding a block revolves around a transaction. Please enter the following:")
+
         # Get sender, reciever, and amount
         sender = input("Enter sender: ")
         receiver = input("Enter receiver: ")
         amount = input("Enter amount: ")
+
+        print("\nThis transaction will be encrypted along with the current time, current date, previous hash value and nonce value (which will increase by 1 until the result is met). Together this forms the block header.\n")
 
         new_transaction = {"sender": sender,
                            "receiver": receiver, "amount": amount}
@@ -40,20 +44,24 @@ while ready:
         print("\nBlock successfully added to blockchain.")
 
     elif message == "2":
+        local_blockchain.print_blocks()
         local_blockchain.validate_chain()
     elif message == "3":
         local_blockchain.print_blocks()
     elif message == "4":
-        try:
+        if (len(local_blockchain.chain) == 1):
+            print(
+                "There must be at least one block in the blockchain to add fraudulent transactions.")
+        elif (local_blockchain.chain[1].transactions == fake_transaction):
+            print("Contents for block 1 have already been altered.")
+        else:
             real_block = local_blockchain.chain[1]
             local_blockchain.chain[1].transactions = fake_transaction
+            print("\n" + str(fake_transaction))
             print("\nFraudulent transactions added to block 1.")
             local_blockchain.print_blocks()
             local_blockchain.validate_chain()
 
-        except:
-            print(
-                "There must be at least one block in the blockchain to add fraudulent transactions.")
     elif message == "5":
         local_blockchain = Blockchain()
         print("\nBlockchain has been reset to genesis block.")
