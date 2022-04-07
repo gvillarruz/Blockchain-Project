@@ -29,6 +29,8 @@ class Blockchain:
         new_block = Block(transactions, previous_hash)
         new_block.generate_hash()
         proof = self.proof_of_work(new_block)
+        print("\nBlock added to the chain")
+        new_block.print_contents()
         self.chain.append(new_block)
         return proof, new_block
 
@@ -78,14 +80,14 @@ class Blockchain:
 
         proof = block.generate_hash()
         print("\nThe current/unique hash for this block is:", proof, "\n")
-        print("In order for the proof of work to be verified, the blockhash must be less than equal to the target hash value set by the network. Diffuculty is set to", difficulty, "\n")
+        print("In order for the proof of work to be verified, the blockhash must be less than equal to the target hash value set by the network. Difficulty is set to", difficulty, "\n")
 
         nonceFinal = 0
         while proof[:difficulty] != '0'*difficulty:
             block.nonce += 1  # increment nonce until hash with difficulty is found
             nonceFinal = block.nonce
             proof = block.generate_hash()
-            print(proof)
+            print("Proof generated: ", proof)
         block.nonce = 0
         print("\nFinal nonce value/number of iterations before success:",
               nonceFinal, "\n")

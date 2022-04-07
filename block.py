@@ -13,7 +13,7 @@ class Block:
     def generate_hash(self):
         block_header = str(self.time_stamp) + str(self.transactions) + \
             str(self.previous_hash) + str(self.nonce)
-        print(block_header) #to see how the nonce value changes per iteration
+        print(block_header)  # to see how the nonce value changes per iteration
         block_hash = sha256(block_header.encode())
         return block_hash.hexdigest()
 
